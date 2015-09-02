@@ -49,11 +49,8 @@
         <activity
             android:name=".PmonActivity"
             android:label="@string/title_activity_hrdemo"
-            android:parentActivityName=".ScanningActivity"
+
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.bluetooth.pMon.ScanningActivity" />
         </activity>
         <service
             android:name=".pMonService"

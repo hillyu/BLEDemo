@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.RandomAccessFile;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -76,9 +77,9 @@ public class PmonActivity extends Activity {
     private pMonService mPmonService;
     private pMonSensorItemAdapter mListAdapter;
     private double sensitivity = 0.8f;
-    public static final String SENSOR1 = "pMon1";
-    public static final String SENSOR2 = "pMon2";
-    public static final String SENSOR3 = "pMon3";
+    public static final String SENSOR1 = "pRain1";
+    public static final String SENSOR2 = "pRain2";
+    public static final String SENSOR3 = "pRain3";
 
 
     @Override
@@ -123,15 +124,15 @@ public class PmonActivity extends Activity {
 //        for (int j = 0; j < mDeviceAddrs.size(); j++) {
 //            mBTPeripherals.put(mDeviceAddrs.get(j), mDeviceName.get(j));
 //        }
-        Intent pMonServiceIntent = new Intent(this, pMonService.class);
-        bindService(pMonServiceIntent, mServiceConnection, 0);
+//        Intent pMonServiceIntent = new Intent(this, pMonService.class);
+//        bindService(pMonServiceIntent, mServiceConnection, 0);
 
 //        mConsole = (EditText) findViewById(R.id.hr_console_item);
         Log.d("MYLOG", "Creating activity");
 
         // Show the Up button in the action bar.
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        setTitle("pMon Multi-Sensor");
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+        setTitle(getString(R.string.main_title));
 //        mConsole = (EditText) findViewById(R.id.hr_console_item);
         mTextView = (TextView) findViewById(R.id.hr_text_view);
 
@@ -201,7 +202,10 @@ public class PmonActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindService(mServiceConnection);
+//        unbindService(mServiceConnection);
+        Intent pMonServiceIntent = new Intent(this, pMonService.class);
+        stopService(pMonServiceIntent);
+
     }
 
     // Code to manage Service lifecycle.
@@ -595,17 +599,28 @@ public class PmonActivity extends Activity {
         Date now = new Date();
         String dateStr = "Settings Uploaded on: " + formatter.format(now);
         File file = new File(getStorageDir("postureData"), "settings.txt"); //use hardcode settings.txt as setting file.
-        FileOutputStream fos = new FileOutputStream(file);
+        FileOutputStream fos = new FileOutputStream(file,false);
+        DataOutputStream dos = new DataOutputStream(fos);
+        dos.writeChars("");
+        dos.flush();
+        dos.close();
+        fos.flush();
+        fos.close();
+        fos = new FileOutputStream(file);
         final FileOutputStream finalFos = fos;
         JsonWriter writer = null;
         writer = new JsonWriter(new OutputStreamWriter(finalFos, "UTF-8"));
         writer.beginArray();
         for (final Map.Entry<String, double[]> entry : initialVec.entrySet()) {
-            writer.beginObject();
-            writer.name("device").value(entry.getKey());
-            writer.name("initVec");
-            writeDoublesArray(writer, entry.getValue());
-            writer.endObject();
+            //if last run using differnet sensor, their settings will be loaded at the beginning of this run
+            //hence the initial vec would have two sets of keys. only write the one curretly using.
+            if (currentVec.containsKey(entry.getKey())) {
+                writer.beginObject();
+                writer.name("device").value(entry.getKey());
+                writer.name("initVec");
+                writeDoublesArray(writer, entry.getValue());
+                writer.endObject();
+            }
         }
         writer.endArray();
         writer.close();}

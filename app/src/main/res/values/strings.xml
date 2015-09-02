@@ -8,5 +8,6 @@
     <string name="title_activity_hrdemo">Device Scan</string>
     <string name="online">Status: Online</string>
     <string name="offline">Status: Offline</string>
+    <string name="main_title">pRain - Posture tRainer</string>
 
 </resources>
