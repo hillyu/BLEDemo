@@ -17,12 +17,12 @@
         android:required="false" />
 
     <!--<android:uses-permission-->
-        <!--android:name="android.permission.WRITE_EXTERNAL_STORAGE"-->
-        <!--android:maxSdkVersion="18" />-->
+    <!--android:name="android.permission.WRITE_EXTERNAL_STORAGE"-->
+    <!--android:maxSdkVersion="18" />-->
     <!--<android:uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
     <!--<android:uses-permission-->
-        <!--android:name="android.permission.READ_EXTERNAL_STORAGE"-->
-        <!--android:maxSdkVersion="18" />-->
+    <!--android:name="android.permission.READ_EXTERNAL_STORAGE"-->
+    <!--android:maxSdkVersion="18" />-->
 
     <application
         android:allowBackup="true"
@@ -31,7 +31,7 @@
         android:logo="@mipmap/ic_launcher"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="org.bluetooth.pRainMaster.ScanningActivity"
+            android:name=".ScanningActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -41,24 +41,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.bluetooth.pRainMaster.PeripheralActivity"
+            android:name=".PeripheralActivity"
             android:label="@string/title_activity_peripheral"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name="org.bluetooth.pRainMaster.PmonActivity"
+            android:name=".PmonActivity"
             android:label="@string/title_activity_hrdemo"
-            android:parentActivityName="org.bluetooth.pRainMaster.ScanningActivity"
+
             android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.bluetooth.pRainMaster.ScanningActivity" />
         </activity>
         <service
-            android:name="org.bluetooth.pRainMaster.pMonService"
+            android:name=".pMonService"
             android:enabled="true"
-          >
+            >
         </service>
     </application>
 
