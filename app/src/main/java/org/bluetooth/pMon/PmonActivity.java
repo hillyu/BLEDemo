@@ -76,7 +76,7 @@ public class PmonActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pMon);
+        setContentView(R.layout.activity_pmon);
 //        listview = (ListView) findViewById(R.id.listView);
 //        mListAdapter = new pMonSensorItemAdapter(this);
         angle1 = (TextView) findViewById(R.id.angle1);
