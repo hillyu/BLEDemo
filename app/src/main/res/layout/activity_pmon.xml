@@ -28,23 +28,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Sensor 1"
+            android:text="1"
             android:id="@+id/SensorLabel1"
             android:layout_weight="0"
             android:layout_gravity="left"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Sensor 2"
+            android:text="2"
             android:id="@+id/SensorLabel2"
             android:layout_weight="0"
             android:layout_gravity="left"
-            android:layout_below="@+id/angle1"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@+id/progressBar1"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:textSize="24sp" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
@@ -52,11 +56,31 @@
             android:layout_height="wrap_content"
             android:id="@+id/progressBar1"
             android:layout_gravity="right"
-            android:layout_above="@+id/SensorLabel2"
+            android:layout_below="@+id/angle1"
             android:layout_alignParentEnd="true"
-            android:layout_below="@+id/SensorLabel1"
-            android:layout_toEndOf="@+id/SensorLabel1"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+            android:layout_alignParentStart="true"
+            android:progressDrawable="@drawable/stylish_progress_bar"
+            android:layout_marginBottom="@dimen/activity_vertical_margin" />
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="173dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar2"
+            android:layout_gravity="right"
+            android:layout_below="@+id/angle2"
+            android:layout_alignParentStart="true"
+            android:progressDrawable="@drawable/stylish_progress_bar"
+            android:layout_alignParentEnd="true" />
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="173dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar3"
+            android:layout_gravity="right"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/angle3"
+            android:layout_alignParentStart="true"
+            android:progressDrawable="@drawable/stylish_progress_bar"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -64,12 +88,12 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="N/A"
             android:id="@+id/angle1"
-            android:layout_below="@+id/SensorLabel1"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_below="@+id/SensorLabel1"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,13 +101,12 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="N/A"
             android:id="@+id/angle2"
-            android:layout_weight="0"
-            android:layout_below="@+id/SensorLabel2"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_below="@+id/SensorLabel2"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -91,83 +114,58 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="N/A"
             android:id="@+id/angle3"
-            android:layout_weight="0"
-            android:layout_below="@+id/sensorLable3"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_below="@+id/SensorLabel3"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Sensor 3"
-            android:id="@+id/sensorLable3"
+            android:text="3"
+            android:id="@+id/SensorLabel3"
             android:layout_weight="0"
             android:layout_gravity="left"
-            android:layout_below="@+id/angle2"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@+id/progressBar2"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:textSize="24sp" />
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Adjust"
-            android:id="@+id/button"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="173dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar2"
-            android:layout_gravity="right"
-            android:layout_below="@+id/SensorLabel2"
-            android:layout_alignEnd="@+id/progressBar1"
-            android:layout_above="@+id/sensorLable3"
-            android:layout_toEndOf="@+id/SensorLabel2"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_alignParentEnd="true" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="173dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar3"
-            android:layout_gravity="right"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/angle3"
-            android:layout_toEndOf="@+id/sensorLable3" />
+
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Battery Level: 0%"
+            android:text="Battery Level: N/A"
             android:id="@+id/batt1"
-            android:layout_above="@+id/progressBar1"
-            android:layout_alignEnd="@+id/progressBar1" />
+            android:layout_alignTop="@+id/status1"
+            android:layout_toEndOf="@+id/status1"
+            android:layout_marginStart="24dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Battery Level: 0%"
+            android:text="Battery Level: N/A"
             android:id="@+id/batt2"
-            android:layout_above="@+id/progressBar2"
-            android:layout_alignEnd="@+id/progressBar2" />
+            android:layout_alignBottom="@+id/SensorLabel2"
+            android:layout_alignStart="@+id/batt1" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Battery Level: 0%"
+            android:text="Battery Level: N/A"
             android:id="@+id/batt3"
-            android:layout_alignBottom="@+id/sensorLable3"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignTop="@+id/status3"
+            android:layout_alignStart="@+id/batt2" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -175,9 +173,10 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Status: Offline"
             android:id="@+id/status1"
-            android:layout_above="@+id/progressBar1"
-            android:layout_toStartOf="@+id/batt1"
-            android:layout_marginRight="@dimen/activity_horizontal_margin" />
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_alignBottom="@+id/SensorLabel1"
+            android:layout_toEndOf="@+id/SensorLabel1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -186,8 +185,8 @@
             android:text="Status: Offline"
             android:id="@+id/status2"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_above="@+id/progressBar2"
-            android:layout_alignStart="@+id/status3" />
+            android:layout_alignBottom="@+id/SensorLabel2"
+            android:layout_alignStart="@+id/status1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -196,26 +195,18 @@
             android:text="Status: Offline"
             android:id="@+id/status3"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_alignTop="@+id/batt3"
-            android:layout_toStartOf="@+id/batt3" />
+            android:layout_alignBottom="@+id/SensorLabel3"
+            android:layout_alignStart="@+id/status2" />
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <Button
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Ref: N/A"
-            android:id="@+id/refLabel"
-            android:layout_above="@+id/button"
-            android:layout_centerHorizontal="true" />
-
+            android:text="Adjust"
+            android:id="@+id/button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/angle1"
-        android:layout_weight="0" />
 
 
 </LinearLayout>

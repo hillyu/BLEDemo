@@ -12,9 +12,11 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.IBinder;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -48,6 +50,7 @@ public class ScanningActivity extends ListActivity {
         if (mBleWrapper.checkBleHardwareAvailable() == false) {
             bleMissing();
         }
+
     }
 
     @Override

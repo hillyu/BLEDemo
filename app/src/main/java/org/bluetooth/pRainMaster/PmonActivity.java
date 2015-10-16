@@ -14,8 +14,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
@@ -25,6 +27,7 @@ import android.os.Handler;
 import android.app.Activity;
 import android.content.Context;
 import android.os.IBinder;
+import android.text.InputType;
 import android.util.JsonReader;
 import android.util.JsonToken;
 import android.util.JsonWriter;
@@ -37,6 +40,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
+import android.widget.Toast;
 
 /* this activity's purpose is to show how to use particular type of devices in easy and fast way */
 public class PmonActivity extends Activity {
@@ -135,19 +139,52 @@ public class PmonActivity extends Activity {
         adjustButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                for (final Map.Entry<String, double[]> entry : currentVec.entrySet()) {
-                    initialVec.put(entry.getKey(), entry.getValue());
 
-                }
-                mHandler.post(new Runnable() {
-                    public void run() {
-                        try {
-                            writeSettings(initialVec);
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                // ----------------------------- test code for dialog for passwd auth ----------------------------
+                AlertDialog.Builder builder = new AlertDialog.Builder(PmonActivity.this);
+                builder.setTitle("Input Admin Password");
+
+// Set up the input
+                final EditText input = new EditText(getApplicationContext());
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                builder.setView(input);
+
+// Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (input.getText().toString().equals("hill123")) {
+                            for (final Map.Entry<String, double[]> entry : currentVec.entrySet()) {
+                                initialVec.put(entry.getKey(), entry.getValue());
+
+                            }
+                            mHandler.post(new Runnable() {
+                                public void run() {
+                                    try {
+                                        writeSettings(initialVec);
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                            Toast.makeText(getApplicationContext(), "Settings Saved!", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), "password incorrect!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+                // ----------------------------- test code for dialog for passwd auth ----------------------------
+
             }
 
 
